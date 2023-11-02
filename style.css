@@ -4,3 +4,7 @@
   box-sizing: border-box;
   background-color: rgb(224, 201, 166);
 }
+
+#noteBook {
+  border: groove 3px black;
+}

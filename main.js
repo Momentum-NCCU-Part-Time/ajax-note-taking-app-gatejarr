@@ -24,12 +24,17 @@ const app = {
     for (let note of this.data.notes) {
       pages.innerHTML += `
       <h2>${note.title}</h2>
-      <div>${note.body}</div>
+      <p>${note.body}</p>
       <button>EDIT</button>
       <button>DELETE</button>
       `;
     }
   },
 };
+
+//controls: function() {
+//add event listeners, if statements for when edit, delete, add note buttons are clicked
+//will need: edit, delete (with confirmation?), add note, save/submit
+//}
 
 app.getNotes();
