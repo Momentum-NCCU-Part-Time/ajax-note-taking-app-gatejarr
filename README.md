@@ -1,4 +1,5 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/8CLYtKZp)
+
 # Note-Taking App
 
 ## Directions
@@ -37,15 +38,15 @@ To get a list of all notes, make a `GET` request to `http://localhost:3000/notes
 To add a new note, make a `POST` request to `http://localhost:3000/notes/`. You will need to send a body and headers. Your request will look like this:
 
 ```js
-fetch('http://localhost:3000/notes/', {
-  method: 'POST', 
-  headers: {"Content-Type": "application/json"}, 
-  body: JSON.stringify({"title": "Hi", "body": "COOL"})
+fetch("http://localhost:3000/notes/", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ title: "Hi", body: "COOL" }),
 })
-.then(r => r.json())
-.then(
+  .then((r) => r.json())
+  .then
   // whatever you need to do next
-)
+  ();
 ```
 
 The `headers` attribute lets json-server know you will be sending JSON to it for it to read. The `body` attribute is the JSON you are sending. If you have an object, then you must call `JSON.stringify` with that object.
@@ -58,6 +59,6 @@ To delete a note, make a `DELETE` request to `http://localhost:3000/notes/:id`.
 
 The following resources will be very helpful for making this application:
 
-* [MDN - Using fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)
-* [MDN - Using data attributes](https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes)
-* [How event delegation works](https://davidwalsh.name/event-delegate)
+- [MDN - Using fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)
+- [MDN - Using data attributes](https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes)
+- [How event delegation works](https://davidwalsh.name/event-delegate)
