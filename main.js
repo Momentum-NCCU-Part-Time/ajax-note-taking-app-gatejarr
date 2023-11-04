@@ -1,6 +1,6 @@
 const app = {
   data: {
-    url: "http://localhost:3000/notes",
+    url: "http://localhost:3000/notes/",
     notes: [],
   },
 
@@ -20,9 +20,9 @@ const app = {
   },
 
   generateNotesHTML: function () {
-    const navContainer = document.getElementById("pages");
+    const navContainer = document.getElementById("sideBar");
     for (let note of this.data.notes) {
-      pages.innerHTML += `
+      sideBar.innerHTML += `
       <h2>${note.title}</h2>
       <p>${note.body}</p>
       <button>EDIT</button>
