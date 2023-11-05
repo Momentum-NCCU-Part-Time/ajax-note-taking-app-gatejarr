@@ -7,4 +7,10 @@
 
 #noteBook {
   border: groove 3px black;
+  display: flex;
+  justify-content: space-between;
+}
+
+.hidden {
+  display: none;
 }

@@ -4,7 +4,7 @@ const app = {
     notes: [],
   },
 
-  /* methods */
+  // methods
   getNotes: function () {
     fetch(this.data.url, {
       method: "GET",
@@ -19,6 +19,23 @@ const app = {
       });
   },
 
+  // Create notes function-------------------------------------------------------------------------
+  createNote: function (noteId) {
+    fetch(this.data.url + noteId, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+    })
+      .then((r) => r.json())
+      .then((response) => {
+        this.generateNotesHTML();
+      });
+  },
+
+  displayNewForm: function () {
+    let form = document.getElementById("newForm");
+    form.classList.remove("hidden");
+  },
+  // Create notes function end---------------------------------------------------------------------
   // Delete notes function
   deleteNote: function (noteId) {
     fetch(this.data.url + noteId, {
@@ -30,6 +47,23 @@ const app = {
         this.generateNotesHTML();
       });
   },
+
+  // Confirm Delete pop-up WIP
+  confirmDelete: function () {},
+  // Delete notes function end---------------------------------------------------------------------
+
+  // Edit notes function
+  editNote: function (noteId) {
+    fetch(this.data.url + noteId, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+    })
+      .then((r) => r.json())
+      .then((response) => {
+        this.generateNotesHTML();
+      });
+  },
+  // Edit notes function end---------------------------------------------------------------------
 
   generateNotesHTML: function () {
     const sideBar = document.getElementById("sideBar");
@@ -47,13 +81,24 @@ const app = {
   },
 
   // Event Listeners
+  // Delete Button
   addEventListeners: function () {
     let deleteButtons = document.querySelectorAll(".deleteButton");
-    console.log(deleteButtons);
     for (let button of deleteButtons) {
       button.addEventListener("click", (event) => {
         event.preventDefault();
         this.deleteNote(button.dataset.id);
+        console.log(deleteButtons);
+      });
+    }
+
+    // Create Button
+    let createButton = document.querySelectorAll(".createNote");
+    for (let button of createButton) {
+      button.addEventListener("click", (event) => {
+        event.preventDefault();
+        console.log("New Note Button clicked");
+        this.displayNewForm();
       });
     }
   },
