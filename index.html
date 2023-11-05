@@ -17,7 +17,10 @@
     <div id="sideBar"></div>
     <form id="newForm" class="hidden">
       <h2>New Note</h2>
-      <input type="text" />
+      <label for="title">Title:<input id="title" type="text" required /></label>
+      <label for="body"
+        >Body:<textarea id="body" rows="5" cols="30"></textarea>
+      </label>
       <button type="submit">SAVE</button>
     </form>
   </body>

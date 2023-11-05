@@ -14,3 +14,10 @@
 .hidden {
   display: none;
 }
+
+input,
+textarea {
+  display: flex;
+  flex-direction: column;
+  background-color: wheat;
+}
