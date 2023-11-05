@@ -21,6 +21,15 @@ const app = {
 
   // Create notes function-------------------------------------------------------------------------
   createNote: function (noteId) {
+    let newTitle = document.getElementById("newTitle").value;
+    let newBody = document.getElementById("newBody").value;
+    let newNote = {
+      title: newTitle,
+      body: newBody,
+    };
+    const jsonData = JSON.stringify(newData);
+    const apiUrl = "http://localhost:3000/notes/";
+
     fetch(this.data.url + noteId, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -35,6 +44,7 @@ const app = {
     let form = document.getElementById("newForm");
     form.classList.remove("hidden");
   },
+
   // Create notes function end---------------------------------------------------------------------
   // Delete notes function
   deleteNote: function (noteId) {
@@ -87,8 +97,8 @@ const app = {
     for (let button of deleteButtons) {
       button.addEventListener("click", (event) => {
         event.preventDefault();
+        console.log("Delete Button Clicked");
         this.deleteNote(button.dataset.id);
-        console.log(deleteButtons);
       });
     }
 
@@ -99,6 +109,26 @@ const app = {
         event.preventDefault();
         console.log("New Note Button clicked");
         this.displayNewForm();
+      });
+    }
+
+    // Edit Button
+    let editButtons = document.querySelectorAll(".editButton");
+    for (let button of editButtons) {
+      button.addEventListener("click", (event) => {
+        event.preventDefault();
+        console.log("Edit Button Clicked");
+        this.editNote(button.dataset.id);
+      });
+    }
+
+    //Save Button
+    let saveButtons = document.querySelectorAll("post");
+    for (let button of saveButtons) {
+      button.addEventListener("click", (event) => {
+        event.preventDefault();
+        console.log("Save Button Clicked");
+        this.createNote(button.dataset.id);
       });
     }
   },

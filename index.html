@@ -17,11 +17,19 @@
     <div id="sideBar"></div>
     <form id="newForm" class="hidden">
       <h2>New Note</h2>
-      <label for="title">Title:<input id="title" type="text" required /></label>
-      <label for="body"
-        >Body:<textarea id="body" rows="5" cols="30"></textarea>
+      <label for="newTitle"
+        >Title:<input id="newTitle" name="newTitle" type="text" required
+      /></label>
+      <label for="newBody"
+        >Body:<textarea
+          id="newBody"
+          name="newBody"
+          rows="5"
+          cols="30"
+          required
+        ></textarea>
       </label>
-      <button type="submit">SAVE</button>
+      <button id="post" type="submit">SAVE</button>
     </form>
   </body>
 </html>
