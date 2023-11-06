@@ -52,6 +52,7 @@ const app = {
     .then((response) => {
       this.app.main();
     });
+    window.location.reload();
 },
 
   displayNewForm: function () {
@@ -70,6 +71,7 @@ const app = {
       .then((response) => {
         this.app.main();
       });
+      window.location.reload();
   },
 
   // Confirm Delete pop-up WIP
