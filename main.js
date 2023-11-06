@@ -29,6 +29,24 @@ const app = {
         <button class="editButton" data-id=${note.id}>EDIT</button>
         <button class="deleteButton" data-id=${note.id}>DELETE</button>
       </div>
+      <div class="edit">
+        <form id="editForm" class="hiddenEdit">
+        <h2>Edit Note</h2>
+        <label for="editTitle"
+          >Title:<input id="editTitle" name="editTitle" type="text" required
+        /></label>
+        <label for="editBody"
+          >Body:<textarea
+            id="editBody"
+            name="editBody"
+            rows="5"
+            cols="30"
+            required
+          ></textarea>
+        </label>
+        <button class="put" type="submit">SAVE</button>
+        </form>
+      </div>
       `;
     }
     this.addEventListeners();
@@ -82,6 +100,12 @@ const app = {
     }
   },
 
+  // Edit Form
+  displayEditForm: function () {
+    let form = document.getElementById("editForm");
+    form.classList.remove("hiddenEdit");
+  },
+
   // Edit notes function
   /* editNote: function (noteId) {
     fetch(this.data.url + noteId, {
@@ -124,7 +148,7 @@ const app = {
       button.addEventListener("click", (event) => {
         event.preventDefault();
         console.log("Edit Button Clicked");
-        this.editNote(button.dataset.id);
+        this.displayEditForm(button.dataset.id);
       });
     }
 

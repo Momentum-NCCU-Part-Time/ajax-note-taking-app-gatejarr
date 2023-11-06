@@ -19,7 +19,7 @@ h1 {
   justify-content: space-between;
 }
 
-.hidden {
+.hidden, .hiddenEdit {
   display: none;
 }
 
