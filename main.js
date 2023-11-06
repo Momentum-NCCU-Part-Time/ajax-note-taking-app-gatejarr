@@ -34,14 +34,14 @@ const app = {
     this.addEventListeners();
   },
 
-  // Create notes function-------------------------------------------------------------------------
-createNote: function (noteId) {
-  let newTitle = document.getElementById("newTitle").value;
-  let newBody = document.getElementById("newBody").value;
-  let newNote = {
-    title: newTitle,
-    body: newBody
-  }
+  // Create notes
+  createNote: function (noteId) {
+    let newTitle = document.getElementById("newTitle").value;
+    let newBody = document.getElementById("newBody").value;
+    let newNote = {
+      title: newTitle,
+      body: newBody
+    }
 
   fetch(this.data.url, {
     method: "POST",
@@ -50,7 +50,7 @@ createNote: function (noteId) {
   })
     .then((r) => r.json())
     .then((response) => {
-      this.generateNotesHTML();
+      this.app.main();
     });
 },
 
@@ -59,9 +59,8 @@ createNote: function (noteId) {
     form.classList.remove("hidden");
   },
 
-  // Create notes function end---------------------------------------------------------------------
 
-  // Delete notes function
+  // Delete notes
   deleteNote: function (noteId) {
     fetch(this.data.url + noteId, {
       method: "DELETE",
@@ -69,7 +68,7 @@ createNote: function (noteId) {
     })
       .then((r) => r.json())
       .then((response) => {
-        this.generateNotesHTML();
+        this.app.main();
       });
   },
 
@@ -80,7 +79,6 @@ createNote: function (noteId) {
       this.deleteNote(noteId);
     }
   },
-  // Delete notes function end---------------------------------------------------------------------
 
   // Edit notes function
   /* editNote: function (noteId) {
@@ -93,7 +91,6 @@ createNote: function (noteId) {
         this.generateNotesHTML();
       });
   },
-  // Edit notes function end---------------------------------------------------------------------
 */
 
   // Event Listeners
@@ -134,7 +131,6 @@ createNote: function (noteId) {
     for (let button of saveButton) {
       button.addEventListener("click", (event) => {
         event.preventDefault();
-      //  console.log("Save Button Clicked");
         this.createNote();
       });
     }
@@ -143,7 +139,6 @@ createNote: function (noteId) {
   main: function () {
     //add event listeners, if statements for when edit, delete, add note buttons are clicked
     //will need: edit, delete (with confirmation?), add note, save/submit
-
     this.getNotes();
   //  this.createNote();
   },

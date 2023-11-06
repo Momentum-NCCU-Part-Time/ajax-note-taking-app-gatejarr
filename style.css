@@ -5,6 +5,14 @@
   background-color: rgb(224, 201, 166);
 }
 
+body {
+  font-family: sans-serif;
+}
+
+h1 {
+  font-family: serif;
+}
+
 #noteBook {
   border: groove 3px black;
   display: flex;
