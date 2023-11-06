@@ -23,16 +23,14 @@ const app = {
   createNote: function (noteId) {
     let newTitle = document.getElementById("newTitle").value;
     let newBody = document.getElementById("newBody").value;
-    let newNote = {
-      title: newTitle,
-      body: newBody,
-    };
-    const jsonData = JSON.stringify(newData);
-    const apiUrl = "http://localhost:3000/notes/";
 
-    fetch(this.data.url + noteId, {
+    //let jsonData = JSON.stringify(newNote);
+    //const apiUrl = "http://localhost:3000/notes/";
+
+    fetch(this.data.url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ "title": "Hi!", "body": "Cool!" }),
     })
       .then((r) => r.json())
       .then((response) => {
@@ -46,6 +44,7 @@ const app = {
   },
 
   // Create notes function end---------------------------------------------------------------------
+
   // Delete notes function
   deleteNote: function (noteId) {
     fetch(this.data.url + noteId, {
@@ -63,7 +62,7 @@ const app = {
   // Delete notes function end---------------------------------------------------------------------
 
   // Edit notes function
-  editNote: function (noteId) {
+  /* editNote: function (noteId) {
     fetch(this.data.url + noteId, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -74,7 +73,7 @@ const app = {
       });
   },
   // Edit notes function end---------------------------------------------------------------------
-
+*/
   generateNotesHTML: function () {
     const sideBar = document.getElementById("sideBar");
     for (let note of this.data.notes) {
