@@ -19,24 +19,42 @@ const app = {
       });
   },
 
-  // Create notes function-------------------------------------------------------------------------
-  createNote: function (noteId) {
-    let newTitle = document.getElementById("newTitle").value;
-    let newBody = document.getElementById("newBody").value;
-
-    //let jsonData = JSON.stringify(newNote);
-    //const apiUrl = "http://localhost:3000/notes/";
-
-    fetch(this.data.url, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ "title": "Hi!", "body": "Cool!" }),
-    })
-      .then((r) => r.json())
-      .then((response) => {
-        this.generateNotesHTML();
-      });
+  generateNotesHTML: function () {
+    const sideBar = document.getElementById("sideBar");
+    for (let note of this.data.notes) {
+      sideBar.innerHTML += `
+      <div class="noteCard">
+        <h2>${note.title}</h2>
+        <div>${note.body}</div>
+        <button class="editButton" data-id=${note.id}>EDIT</button>
+        <button class="deleteButton" data-id=${note.id}>DELETE</button>
+      </div>
+      `;
+    }
+    this.addEventListeners();
   },
+
+  // Create notes function-------------------------------------------------------------------------
+createNote: function (noteId) {
+  let newTitle = document.getElementById("newTitle").value;
+  let newBody = document.getElementById("newBody").value;
+  let newNote = {
+    title: newTitle,
+    body: newBody
+  }
+
+  //let newData = JSON.stringify(newNote);
+
+  fetch(this.data.url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(newNote),
+  })
+    .then((r) => r.json())
+    .then((response) => {
+      this.generateNotesHTML();
+    });
+},
 
   displayNewForm: function () {
     let form = document.getElementById("newForm");
@@ -74,20 +92,6 @@ const app = {
   },
   // Edit notes function end---------------------------------------------------------------------
 */
-  generateNotesHTML: function () {
-    const sideBar = document.getElementById("sideBar");
-    for (let note of this.data.notes) {
-      sideBar.innerHTML += `
-      <div class="noteCard">
-        <h2>${note.title}</h2>
-        <div>${note.body}</div>
-        <button class="editButton" data-id=${note.id}>EDIT</button>
-        <button class="deleteButton" data-id=${note.id}>DELETE</button>
-      </div>
-      `;
-    }
-    this.addEventListeners();
-  },
 
   // Event Listeners
   // Delete Button
@@ -122,21 +126,22 @@ const app = {
     }
 
     //Save Button
-    let saveButtons = document.querySelectorAll("post");
-    for (let button of saveButtons) {
+    let saveButton = document.querySelectorAll(".post");
+    for (let button of saveButton) {
       button.addEventListener("click", (event) => {
         event.preventDefault();
-        console.log("Save Button Clicked");
-        this.createNote(button.dataset.id);
+      //  console.log("Save Button Clicked");
+        this.createNote();
       });
     }
-  },
+  }, 
 
   main: function () {
     //add event listeners, if statements for when edit, delete, add note buttons are clicked
     //will need: edit, delete (with confirmation?), add note, save/submit
 
     this.getNotes();
+  //  this.createNote();
   },
 };
 
