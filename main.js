@@ -43,8 +43,6 @@ createNote: function (noteId) {
     body: newBody
   }
 
-  //let newData = JSON.stringify(newNote);
-
   fetch(this.data.url, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -76,7 +74,12 @@ createNote: function (noteId) {
   },
 
   // Confirm Delete pop-up WIP
-  confirmDelete: function () {},
+  confirmDelete: function () {
+    let deleteConfirm = window.confirm("Are you sure?");
+    if (deleteConfirm) {
+      this.deleteNote(noteId);
+    }
+  },
   // Delete notes function end---------------------------------------------------------------------
 
   // Edit notes function
@@ -101,7 +104,8 @@ createNote: function (noteId) {
       button.addEventListener("click", (event) => {
         event.preventDefault();
         console.log("Delete Button Clicked");
-        this.deleteNote(button.dataset.id);
+        //confirm("Are you sure?");
+        this.confirmDelete(button.dataset.id);
       });
     }
 
