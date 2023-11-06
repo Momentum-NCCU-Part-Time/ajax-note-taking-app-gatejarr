@@ -74,7 +74,7 @@ createNote: function (noteId) {
   },
 
   // Confirm Delete pop-up WIP
-  confirmDelete: function () {
+  confirmDelete: function (noteId) {
     let deleteConfirm = window.confirm("Are you sure?");
     if (deleteConfirm) {
       this.deleteNote(noteId);
