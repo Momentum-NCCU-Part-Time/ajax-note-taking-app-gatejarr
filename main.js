@@ -44,7 +44,7 @@ const app = {
             required
           ></textarea>
         </label>
-        <button class="put" type="submit">SAVE</button>
+        <button class="put" type="submit">UPDATE</button>
         </form>
       </div>
       `;
@@ -107,7 +107,14 @@ const app = {
   },
 
   // Edit notes function
-  /* editNote: function (noteId) {
+ editNote: function (noteId) {
+    let editedTitle = document.getElementById("editTitle").value;
+    let editedBody = document.getElementById("editBody").value;
+    let editedNote = {
+      title: editedTitle,
+      body: editedBody
+    }
+
     fetch(this.data.url + noteId, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -117,7 +124,7 @@ const app = {
         this.generateNotesHTML();
       });
   },
-*/
+
 
   // Event Listeners
   // Delete Button
@@ -152,12 +159,20 @@ const app = {
       });
     }
 
-    //Save Button
+    // Save Button
     let saveButton = document.querySelectorAll(".post");
     for (let button of saveButton) {
       button.addEventListener("click", (event) => {
         event.preventDefault();
         this.createNote();
+      });
+    }
+    // Update Button
+    let updateButton = document.querySelectorAll(".put");
+    for (let button of updateButton) {
+      button.addEventListener("click", (event) => {
+        event.preventDefault();
+        this.editNote();
       });
     }
   }, 
