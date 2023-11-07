@@ -32,7 +32,7 @@ const app = {
       <div class="edit">
         <form id="editForm" class="hiddenEdit">
         <h2>Edit Note</h2>
-        <label for="editTitle"
+        <label for="editTitle" id ="editNote"
           >Title:<input id="editTitle" name="editTitle" type="text" required
         /></label>
         <label for="editBody"
@@ -44,7 +44,7 @@ const app = {
             required
           ></textarea>
         </label>
-        <button class="put" type="submit">UPDATE</button>
+        <button class="patch" type="submit">UPDATE</button>
         </form>
       </div>
       `;
@@ -108,7 +108,8 @@ const app = {
 
   // Edit notes function
  editNote: function (noteId) {
-    console.log(noteId);
+    // let note = this.data.notes.find(note = note.id == noteId);
+    // console.log(note);
     let editedTitle = document.getElementById("editTitle").value;
     let editedBody = document.getElementById("editBody").value;
     let editedNote = {
@@ -117,12 +118,13 @@ const app = {
     }
 
     fetch(this.data.url + noteId, {
-      method: "PUT",
+      method: "PATCH",
       headers: { "Content-Type": "application/json" },
     })
       .then((r) => r.json())
       .then((response) => {
-        this.generateNotesHTML();
+        this.data.notes = [],
+        this.getNotes()
       });
   },
 
@@ -169,7 +171,7 @@ const app = {
       });
     }
     // Update Button
-    let updateButton = document.querySelectorAll(".put");
+    let updateButton = document.querySelectorAll(".patch");
     for (let button of updateButton) {
       button.addEventListener("click", (event) => {
         event.preventDefault();
