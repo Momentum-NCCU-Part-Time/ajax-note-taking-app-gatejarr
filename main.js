@@ -24,29 +24,32 @@ const app = {
     for (let note of this.data.notes) {
       sideBar.innerHTML += `
       <div class="noteCard">
-        <h2>${note.title}</h2>
-        <div>${note.body}</div>
-        <button class="editButton" data-id=${note.id}>EDIT</button>
-        <button class="deleteButton" data-id=${note.id}>DELETE</button>
-      </div>
-      <div class="edit">
-        <form id="editForm" class="hiddenEdit">
-        <h2>Edit Note</h2>
-        <label for="editTitle" id ="editNote"
-          >Title:<input id="editTitle" name="editTitle" type="text" required
-        /></label>
-        <label for="editBody"
-          >Body:<textarea
-            id="editBody"
-            name="editBody"
-            rows="5"
-            cols="30"
-            required
-          ></textarea>
-        </label>
-        <button class="patch" type="submit">UPDATE</button>
+        <div>
+          <h2>${note.title}</h2>
+          <div>${note.body}</div>
+          <button class="editButton" data-id=${note.id}>EDIT</button>
+          <button class="deleteButton" data-id=${note.id}>DELETE</button>
+          <div class="edit">
+          <form id="editForm" class="hiddenEdit">
+          <h2>Edit Note</h2>
+          <label for="editTitle" id ="editNote"
+            >Title:<input id="editTitle" name="editTitle" type="text" required
+            /></label>
+          <label for="editBody"
+            >Body:<textarea
+              id="editBody"
+              name="editBody"
+              rows="5"
+              cols="30"
+              required
+            ></textarea>
+          </label>
+          <button class="patch" type="submit">UPDATE</button>
         </form>
+        </div>
       </div>
+      </div>
+
       `;
     }
     this.addEventListeners();
@@ -101,15 +104,15 @@ const app = {
   },
 
   // Edit Form
-  displayEditForm: function () {
-    let form = document.getElementById("editForm");
-    form.classList.remove("hiddenEdit");
+  displayEditForm: function (noteId) {
+    let editForm = document.getElementById("editForm");
+    editForm.classList.remove("hiddenEdit");
   },
 
   // Edit notes function
  editNote: function (noteId) {
-    // let note = this.data.notes.find(note = note.id == noteId);
-    // console.log(note);
+    let note = this.data.notes.find(note = note.id == noteId);
+    console.log(noteId);
     let editedTitle = document.getElementById("editTitle").value;
     let editedBody = document.getElementById("editBody").value;
     let editedNote = {
@@ -120,6 +123,7 @@ const app = {
     fetch(this.data.url + noteId, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(editedNote),
     })
       .then((r) => r.json())
       .then((response) => {
