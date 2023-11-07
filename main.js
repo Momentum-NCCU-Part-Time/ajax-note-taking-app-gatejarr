@@ -108,6 +108,7 @@ const app = {
 
   // Edit notes function
  editNote: function (noteId) {
+    console.log(noteId);
     let editedTitle = document.getElementById("editTitle").value;
     let editedBody = document.getElementById("editBody").value;
     let editedNote = {

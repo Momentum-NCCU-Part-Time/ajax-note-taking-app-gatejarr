@@ -29,3 +29,7 @@ textarea {
   flex-direction: column;
   background-color: wheat;
 }
+
+div {
+  border: groove 1px black;
+}
